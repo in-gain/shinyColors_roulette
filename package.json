@@ -10,7 +10,7 @@
     "serve": "npm run build && firebase emulators:start --only functions",
     "generate": "nuxt-ts generate",
     "deploy": "firebase deploy --only functions",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore --fix.",
     "lint": "npm run lint:js",
     "test": "jest",
     "logs": "firebase functions:log"
