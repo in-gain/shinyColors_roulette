@@ -18,14 +18,13 @@ admin.initializeApp(firebaseConfig)
 //
 export const queryRoulette = functions
   .region('asia-northeast1')
-  .https.onRequest((req, res) => {
-    const ref = admin.database().ref('/シャニマス/ルーレット/')
-    functions.logger.info(req)
-    console.info(req)
-    console.info(ref)
-    res.send(ref.orderByValue()
-      .equalTo(false)
-      .get()
-      .then(snapshot => snapshot.toJSON())
-    )
+  .https.onRequest((_req, res) => {
+    const ref = admin.database().ref('/シャニマス/ルーレット')
+    ref.on('value', (snapshot) => {
+      const snapJSON:any = snapshot.toJSON() ?? {}
+      const retObj:any = Object.keys(snapJSON).filter((objKey:string): boolean => snapJSON[objKey] === false)
+      res.send(retObj)
+    }, (errorObject) => {
+      functions.logger.error(`the read failed: ${errorObject.message}`)
+    })
   })
