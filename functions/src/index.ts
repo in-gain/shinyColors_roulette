@@ -16,15 +16,15 @@ admin.initializeApp(firebaseConfig)
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
-export const queryRoulette = functions
+exports.queryRoulette = functions
   .region('asia-northeast1')
-  .https.onRequest((_req, res) => {
+  .https.onRequest((_req: any, res: { send: (arg0: any) => void }) => {
     const ref = admin.database().ref('/シャニマス/ルーレット')
-    ref.on('value', (snapshot) => {
+    ref.on('value', (snapshot: { toJSON: () => {} }) => {
       const snapJSON:any = snapshot.toJSON() ?? {}
       const retObj:any = Object.keys(snapJSON).filter((objKey:string): boolean => snapJSON[objKey] === false)
       res.send(retObj)
-    }, (errorObject) => {
+    }, (errorObject: { message: any }) => {
       functions.logger.error(`the read failed: ${errorObject.message}`)
     })
   })
