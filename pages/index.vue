@@ -28,9 +28,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+const Line = require('vue-chartjs')
 
-export default Vue.extend({})
+exports.default = {
+  extends: Line,
+  props: ['chartdata','options'],
+  mouted() {
+    this.renderChart(this.chartdata, this.options)
+  }
+}
+
 </script>
 
 <style>
