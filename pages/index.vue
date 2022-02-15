@@ -1,44 +1,10 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
-      <h1 class="title">
-        shinyColorsRoulette
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+      <Roulette />
     </div>
   </div>
 </template>
-
-<script lang="ts">
-const Line = require('vue-chartjs')
-
-exports.default = {
-  extends: Line,
-  props: ['chartdata','options'],
-  mouted() {
-    this.renderChart(this.chartdata, this.options)
-  }
-}
-
-</script>
 
 <style>
 /* Sample `apply` at-rules with Tailwind CSS
